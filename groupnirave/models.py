@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 
 class Gender(models.Model):
-    gender_id = models.BigAutoField(primary_key=True) #gender_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY
-    gender = models.CharField(max_length=55) #gender VARCHAR(55) NOT NULL
+    gender_id = models.BigAutoField(primary_key=True, blank=False) #gender_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY
+    gender = models.CharField(max_length=55, blank=False) #gender VARCHAR(55) NOT NULL
     created_at = models.DateTimeField(auto_now_add=True) # created_at TIMESTAMP DEFAULT CURRENT TIMESTAMP
     updated_at = models.DateTimeField(auto_now=True) # updated_at TIMESTAMP DEFAULT CURRENT_TIME UPDATE CURRENT_TIMESTAMP
 
@@ -12,15 +12,15 @@ class Gender(models.Model):
         db_table = 'genders'
 
 class User(models.Model):
-    user_id = models.BigAutoField(primary_key=True)
-    first_name = models.CharField(max_length=55)
+    user_id = models.BigAutoField(primary_key=True, blank=False)
+    first_name = models.CharField(max_length=55, blank=False)
     middle_name = models.CharField(max_length=55, blank=True)
-    last_name = models.CharField(max_length=55)
-    age = models.IntegerField()
-    birthday = models.DateField()
+    last_name = models.CharField(max_length=55, blank=False)
+    age = models.IntegerField(blank=False)
+    birthday = models.DateField(blank=False)
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
-    username = models.CharField(max_length=55)
-    password = models.CharField(max_length=255)
+    username = models.CharField(max_length=55, blank=False)
+    password = models.CharField(max_length=255, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
