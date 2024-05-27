@@ -1,5 +1,14 @@
-{% for message in messages %}
-<div class="alert alert-success" role="alert">
-    {{ message }}
-</div>
-{% endfor %}
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="col-md-6 mx-auto mt-6 alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% elif message.tags == 'error' %}
+            <div class="col-md-4 mx-auto mt-6 alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
